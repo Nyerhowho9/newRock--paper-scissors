@@ -67,20 +67,25 @@ function playRound(playerSelection, computerSelection){
     
 }
 
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', playRound("rock", computerSelection))
 
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', playRound("paper", computerSelection))
 
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', playRound("scissors", computerSelection))
 
 
 function game(){
-    for (let i = 0; i < 5; i++) {
+    //for (let i = 0; i < 5; i++) {
         // your code here!
-         const playerSelection= prompt("Choose your weapon (rock, paper or scissors): ");
-        //const playerSelection = "rock";
+        const playerSelection = "rock";
         const computerSelection = computerPlay();
         console.log(playRound(playerSelection, computerSelection));
         console.log("Your score is: " + playerScore);
         console.log("Computer's score is: " + computerScore);
         
-     }
+     //}
 }
 game();
