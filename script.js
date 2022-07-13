@@ -31,7 +31,9 @@ function resetScores(){
     chart.textContent = "Let's play another round";
 }
 function playRound(playerSelection, computerSelection){
+
     if(playerScore === 5 || computerScore ===5) return
+
 
     if(playerSelection == "rock"){
         if(computerSelection == "rock"){
@@ -41,6 +43,7 @@ function playRound(playerSelection, computerSelection){
             
 
         } else if(computerSelection == "paper"){
+
             computerScore+=1
             const p = document.createElement('p');
             p.textContent = "You lose! Paper beats rock. "
@@ -51,28 +54,34 @@ function playRound(playerSelection, computerSelection){
             const p = document.createElement('p');
             p.textContent ="You win! Rock crushes scissors. "
             resultContainer.appendChild(p)
+
         }
 
     } else if (playerSelection == "paper"){
         if(computerSelection == "rock"){
+
             playerScore++
             const p = document.createElement('p');
             p.textContent = "You win! Paper beats rock. ";
             resultContainer.appendChild(p)
+
 
         } else if (computerSelection == "paper"){
             const p = document.createElement('p');
             p.textContent = "It's a tie. "
             resultContainer.appendChild(p)
         } else {
+
             computerScore++
             const p = document.createElement('p');
             p.textContent = "You lose! Scissors shredddds Paper."
             resultContainer.appendChild(p)
+
         }
     }else {
         if (computerSelection == "rock"){
             computerScore++;
+
             const p = document.createElement('p');
             p.textContent = "You lose! Rock crushes scissors."
             resultContainer.appendChild(p)
@@ -83,13 +92,16 @@ function playRound(playerSelection, computerSelection){
             p.textContent = "You win! Scissors shredddds Paper.";
             resultContainer.appendChild(p)
 
+
         } else{
             const p = document.createElement('p');
             p.textContent = "It's a tie. "
             resultContainer.appendChild(p)
         }
     }
+
    // updateResult(playerScore, computerScore)
+
 }
 
 // function updateResult(playerScore, computerScore){
@@ -135,6 +147,7 @@ function checkForWinner(playerScore, computerScore){
 //function game(){
     //for (let i = 0; i <= 5; i++) {
         // your code here!
+
         //const playerSelection = "rock";
         //const computerSelection = computerPlay();
         //console.log(playRound(playerSelection, computerSelection));
@@ -143,3 +156,4 @@ function checkForWinner(playerScore, computerScore){
    // }
 //}
 //game();
+
