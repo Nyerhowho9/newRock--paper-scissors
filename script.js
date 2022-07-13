@@ -13,79 +13,133 @@ function computerPlay(){
 }
 
 let playerScore = 0;
-    let computerScore = 0;
+let computerScore = 0;
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const resultContainer = document.querySelector('#resultContainer');
+const chart= document.querySelector('#winningChart')
+const reset = document.querySelector('#reset');
+
 
 //console.log(computerPlay());
-
+//const computerSelection = computerPlay();
+function resetScores(){
+    playerScore = 0;
+    computerScore = 0;
+    resultContainer.textContent = '';
+    chart.textContent = "Let's play another round";
+}
 function playRound(playerSelection, computerSelection){
-    
+    if(playerScore === 5 || computerScore ===5) return
 
     if(playerSelection == "rock"){
         if(computerSelection == "rock"){
-            return "It's a tie";
+            const p = document.createElement('p');
+            p.textContent ="It's a tie";
+            resultContainer.appendChild(p)
+            
 
         } else if(computerSelection == "paper"){
-            computerScore++; 
-            return "You lose! Paper beats rock. "
+            computerScore+=1
+            const p = document.createElement('p');
+            p.textContent = "You lose! Paper beats rock. "
+            resultContainer.appendChild(p)
             
-
         } else{
-            playerScore++;
-            return "You win! Rock crushes scissors. "
-            
+            playerScore+=1
+            const p = document.createElement('p');
+            p.textContent ="You win! Rock crushes scissors. "
+            resultContainer.appendChild(p)
         }
 
     } else if (playerSelection == "paper"){
         if(computerSelection == "rock"){
-            playerScore++;
-            return "You win! Paper beats rock. ";
-             
+            playerScore++
+            const p = document.createElement('p');
+            p.textContent = "You win! Paper beats rock. ";
+            resultContainer.appendChild(p)
 
         } else if (computerSelection == "paper"){
-            return "It's a tie. "
-
+            const p = document.createElement('p');
+            p.textContent = "It's a tie. "
+            resultContainer.appendChild(p)
         } else {
-            computerScore++;
-            return "You lose! Scissors shredddds Paper."
-            
+            computerScore++
+            const p = document.createElement('p');
+            p.textContent = "You lose! Scissors shredddds Paper."
+            resultContainer.appendChild(p)
         }
     }else {
         if (computerSelection == "rock"){
             computerScore++;
-            return "You lose! Rock crushes scissors."
-            
+            const p = document.createElement('p');
+            p.textContent = "You lose! Rock crushes scissors."
+            resultContainer.appendChild(p)
 
         } else if(computerSelection == "paper"){
-            playerScore++;
-            return "You win! Scissors shredddds Paper.";
-            
+            playerScore++
+            const p = document.createElement('p');
+            p.textContent = "You win! Scissors shredddds Paper.";
+            resultContainer.appendChild(p)
 
         } else{
-            return "It's a tie. "
+            const p = document.createElement('p');
+            p.textContent = "It's a tie. "
+            resultContainer.appendChild(p)
         }
     }
-    
+   // updateResult(playerScore, computerScore)
 }
 
-const rock = document.querySelector('#rock');
-rock.addEventListener('click', playRound("rock", computerSelection))
+// function updateResult(playerScore, computerScore){
+//     const result = document.querySelector('#result');
+//     result.textContent = `Your score is: ${playerScore}.\n Computer's score is: ${computerScore}`;
+//     resultContainer.appendChild(result)
+// }
 
-const paper = document.querySelector('#paper');
-paper.addEventListener('click', playRound("paper", computerSelection))
+function checkForWinner(playerScore, computerScore){
+    if (playerScore === 5){
+        chart.textContent = `You won ${playerScore} to ${computerScore}. Great job!!`
+    }else if(computerScore === 5 ){
+        chart.textContent = `You lost ${computerScore} to ${playerScore}. Too bad!!`
+    }else if(computerScore<5 && computerScore >playerScore){
+        chart.textContent = ` ${playerScore} to ${computerScore} | Computer is winning!!! `
+    }else if (playerScore<5 && playerScore > computerScore){
+        chart.textContent = ` ${playerScore} to ${computerScore} | You are winning!!! `
+    }else{
+        chart.textContent = `It's a tie. ${playerScore} to ${computerScore} | It's a tie!!! `   
+    }
+}
+        rock.addEventListener('click', () =>{
+            ( playRound("rock", computerPlay()))
+            checkForWinner(playerScore, computerScore)
+        })
 
-const scissors = document.querySelector('#scissors');
-scissors.addEventListener('click', playRound("scissors", computerSelection))
-
-
-function game(){
-    //for (let i = 0; i < 5; i++) {
-        // your code here!
-        const playerSelection = "rock";
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("Your score is: " + playerScore);
-        console.log("Computer's score is: " + computerScore);
         
-     //}
-}
-game();
+        paper.addEventListener('click', () =>{
+            (playRound("paper", computerPlay()))
+            checkForWinner(playerScore, computerScore)
+        })
+
+        
+        scissors.addEventListener('click', ()=>{
+            (playRound("scissors", computerPlay()))
+            checkForWinner(playerScore, computerScore)
+        })
+
+       
+        reset.addEventListener('click', resetScores)
+// updateResult(playerScore, computerScore)
+
+//function game(){
+    //for (let i = 0; i <= 5; i++) {
+        // your code here!
+        //const playerSelection = "rock";
+        //const computerSelection = computerPlay();
+        //console.log(playRound(playerSelection, computerSelection));
+
+        
+   // }
+//}
+//game();
